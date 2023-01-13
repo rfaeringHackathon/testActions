@@ -1,32 +1,18 @@
-using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Numerics;
 using Nuke.Common;
-using Nuke.Common.CI;
 using Nuke.Common.CI.GitHubActions;
-using Nuke.Common.Execution;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
-using Nuke.Common.Utilities.Collections;
 using Serilog;
-using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.PowerShell.PowerShellTasks;
 using static Nuke.Common.IO.CompressionTasks;
 using Nuke.Common.Git;
-using Nuke.Common.Tools.MSBuild;
-using Microsoft.Build.Tasks;
-using Azure.ResourceManager;
-using Azure.Identity;
-using Azure.ResourceManager.Resources;
-using Azure.Core;
 using Nuke.Common.Tools.PowerShell;
-using System.Net.Sockets;
 
 [GitHubActions(
     "continuous",
