@@ -90,7 +90,7 @@ class Build : NukeBuild
         });
 
     Target Pack => _ => _
-        .DependsOn(Compile)
+        .DependsOn(UnitTest)
         .Executes(() =>
         {
             var project = Solution.Projects.First(x => x.Name == "NukeApp");
