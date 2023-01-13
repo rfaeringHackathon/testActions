@@ -25,6 +25,7 @@ using Azure.ResourceManager;
 using Azure.Identity;
 using Azure.ResourceManager.Resources;
 using Azure.Core;
+using Nuke.Common.Tools.PowerShell;
 
 [GitHubActions(
     "continuous",
@@ -84,7 +85,7 @@ class Build : NukeBuild
 
         });
 
-    Target ServerAuthentication => _ => _      
+    Target ServerAuthentication => _ => _        
         .Executes(() =>
         {
             if (IsServerBuild)
@@ -93,7 +94,7 @@ class Build : NukeBuild
                 var secret = "GqA8Q~J-g0kuyvVqmFCavF1Tgu6GPIj4FltwodAO";
                 var tenantId = "51f2b856-c214-467f-b811-ebe0e9c4092f";
 
-                PowerShell($"az login --service-principal -u {appId} -p {secret} --tenant {tenantId}");
+                PowerShell( _ => _.SetProcessToolPath("pwsh").SetCommand($"az login --service-principal -u {appId} -p {secret} --tenant {tenantId}"));
             } else
             {
                 Log.Information("Running Locally");
