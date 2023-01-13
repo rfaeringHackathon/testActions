@@ -97,6 +97,9 @@ class Build : NukeBuild
 
             var output = GetOutputPath(project);            
             var path = output / "NukeApp.zip";
+
+            var wwwrooot = project.Directory;
+            
             DeleteFile(path);
             CompressZip(output, output / "NukeApp.zip", compressionLevel: CompressionLevel.SmallestSize, fileMode: FileMode.CreateNew);
         });
