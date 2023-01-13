@@ -74,7 +74,11 @@
             "enum": [
               "Clean",
               "Compile",
+              "DeployCode",
+              "DeployInfrastructure",
+              "Pack",
               "Restore",
+              "ServerAuthentication",
               "UnitTest"
             ]
           }
@@ -91,7 +95,11 @@
             "enum": [
               "Clean",
               "Compile",
+              "DeployCode",
+              "DeployInfrastructure",
+              "Pack",
               "Restore",
+              "ServerAuthentication",
               "UnitTest"
             ]
           }

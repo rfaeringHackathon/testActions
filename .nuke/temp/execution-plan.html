@@ -198,45 +198,81 @@ window.addEventListener("load",function(){e.contentLoaded()},!1)}).call(e,n(9))}
 
     <script>
 $(document).ready(function() {
+  $("#Clean").addClass('highlight');
   $("#Restore").addClass('highlight');
   $("#Compile").addClass('highlight');
+  $("#UnitTest").addClass('highlight');
   $("#Clean").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
         $("#Clean").addClass('highlight');
     },
     function() {
         $("#Clean").removeClass('highlight');
+        $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
     });
   $("#Restore").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
     },
     function() {
+        $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
+        $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
     });
   $("#Compile").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
     },
     function() {
+        $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
+        $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+    });
+  $("#UnitTest").hover(
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+    },
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
     });
 
 });
@@ -282,9 +318,10 @@ $(document).ready(function() {
     
     <div class="mermaid">
 graph LR
-Clean -.-> Restore
+Clean --> Restore
 Restore --> Compile
-Compile
+Compile --> UnitTest
+UnitTest
 
 
 linkStyle default interpolate basis
