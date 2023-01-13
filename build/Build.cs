@@ -32,16 +32,21 @@ using System.Net.Sockets;
     "continuous",
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.Push },    
-    InvokedTargets = new[] { nameof(Pack), nameof(Compile), nameof(DeployInfrastructure) })]
+    InvokedTargets = new[] { nameof(Pack), nameof(Compile), nameof(DeployInfrastructure) },
+    ImportSecrets = new[] { nameof(SP_SECRET) })]
 class Build : NukeBuild
 {
     public static int Main() => Execute<Build>(x => x.Pack, x => x.UnitTest);
+
+    GitHubActions GitHubActions => GitHubActions.Instance;
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Solution("./NukeApp/NukeApp.sln")]
     readonly Solution Solution;
+
+    [Parameter][Secret] readonly string SP_SECRET;
 
     [GitRepository] readonly GitRepository Repository;
 
@@ -92,7 +97,7 @@ class Build : NukeBuild
             if (IsServerBuild)
             {
                 var appId = "f74f221f-4794-401f-8a44-73e2cd457adb";
-                var secret = "GqA8Q~J-g0kuyvVqmFCavF1Tgu6GPIj4FltwodAO";
+                var secret = SP_SECRET;
                 var tenantId = "51f2b856-c214-467f-b811-ebe0e9c4092f";
 
                 PowerShell( _ => _.SetProcessToolPath("pwsh").SetCommand($"az login --service-principal -u {appId} -p {secret} --tenant {tenantId}"));

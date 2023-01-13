@@ -202,12 +202,17 @@ $(document).ready(function() {
   $("#Restore").addClass('highlight');
   $("#Compile").addClass('highlight');
   $("#UnitTest").addClass('highlight');
+  $("#Pack").addClass('highlight');
   $("#Clean").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
         $("#Clean").addClass('highlight');
     },
     function() {
@@ -216,6 +221,7 @@ $(document).ready(function() {
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
         $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
     });
   $("#Restore").hover(
     function() {
@@ -223,6 +229,10 @@ $(document).ready(function() {
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
     },
@@ -233,6 +243,7 @@ $(document).ready(function() {
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
         $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
     });
   $("#Compile").hover(
     function() {
@@ -240,6 +251,10 @@ $(document).ready(function() {
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
@@ -252,6 +267,7 @@ $(document).ready(function() {
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
         $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
     });
   $("#UnitTest").hover(
     function() {
@@ -259,6 +275,10 @@ $(document).ready(function() {
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
@@ -273,6 +293,101 @@ $(document).ready(function() {
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
         $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
+    });
+  $("#Pack").hover(
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#Pack").addClass('highlight');
+    },
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
+    });
+  $("#ServerAuthentication").hover(
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
+        $("#ServerAuthentication").addClass('highlight');
+    },
+    function() {
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
+    });
+  $("#DeployInfrastructure").hover(
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
+        $("#ServerAuthentication").addClass('highlight');
+        $("#DeployInfrastructure").addClass('highlight');
+    },
+    function() {
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
+    });
+  $("#DeployCode").hover(
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#UnitTest").removeClass('highlight');
+        $("#Pack").removeClass('highlight');
+        $("#ServerAuthentication").removeClass('highlight');
+        $("#DeployInfrastructure").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#DeployCode").addClass('highlight');
+    },
+    function() {
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#DeployCode").removeClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#UnitTest").addClass('highlight');
+        $("#Pack").addClass('highlight');
     });
 
 });
@@ -321,7 +436,13 @@ graph LR
 Clean --> Restore
 Restore --> Compile
 Compile --> UnitTest
+Compile --> Pack
+Compile --> DeployCode
 UnitTest
+Pack
+ServerAuthentication --> DeployInfrastructure
+DeployInfrastructure
+DeployCode
 
 
 linkStyle default interpolate basis
