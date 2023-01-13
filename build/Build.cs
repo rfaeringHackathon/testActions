@@ -18,8 +18,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [GitHubActions(
     "continuous",
     GitHubActionsImage.UbuntuLatest,
-    On = new[] { GitHubActionsTrigger.Push },
-    InvokedTargets = new[] { nameof(Compile) })]
+    On = new[] { GitHubActionsTrigger.Push },    
+    InvokedTargets = new[] { nameof(Compile), nameof(UnitTest), })]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
