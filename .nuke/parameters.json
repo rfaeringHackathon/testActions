@@ -1,3 +1,5 @@
 {
-  "$schema": "./build.schema.json"
+  "$schema": "./build.schema.json",
+  "AppId": "f74f221f-4794-401f-8a44-73e2cd457adb",
+  "TenantId": "51f2b856-c214-467f-b811-ebe0e9c4092f"  
 }

@@ -33,3 +33,5 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
       - name: Run './build.cmd Pack Compile DeployInfrastructure'
         run: ./build.cmd Pack Compile DeployInfrastructure
+        env:
+          SpSecret: ${{ secrets.SP_SECRET }}
