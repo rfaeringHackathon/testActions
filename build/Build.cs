@@ -131,7 +131,7 @@ class Build : NukeBuild
     });
 
     Target DeployCode => _ => _
-    .DependsOn(Pack)
+    .DependsOn(Pack, DeployInfrastructure)
     .Executes(() =>
     {
         var project = Solution.Projects.First(x => x.Name == "NukeApp");
