@@ -86,9 +86,6 @@ class Build : NukeBuild
             var output = GetOutputPath(project);
             Log.Information($"Output: {output}");
             CompressZip(output, output / "NukeApp.zip", compressionLevel: CompressionLevel.SmallestSize, fileMode: FileMode.CreateNew);
-
-            
-
         });
 
     Target ServerAuthentication => _ => _        
