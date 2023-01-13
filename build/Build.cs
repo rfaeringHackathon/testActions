@@ -109,8 +109,10 @@ class Build : NukeBuild
         var resourceGroupName = "github-actions";
         var subscriptionId = "4883b89e-964b-4799-8d8f-bdf71e856a4d";
 
+        var armTemplatePath = RootDirectory / "arm" / "template.json";
+
         PowerShell(_ => _.SetProcessToolPath("pwsh").SetCommand($"az account set -s {subscriptionId}"));
-        PowerShell(_ => _.SetProcessToolPath("pwsh").SetCommand($"az deployment group create --resource-group {resourceGroupName} --template-file {RootDirectory / "arm" / "template.json"}"));                
+        PowerShell(_ => _.SetProcessToolPath("pwsh").SetCommand($"az deployment group create --resource-group {resourceGroupName} --template-file {armTemplatePath}"));
     });
 
     Target DeployCode => _ => _
