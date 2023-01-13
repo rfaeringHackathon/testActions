@@ -74,9 +74,14 @@
             "enum": [
               "Clean",
               "Compile",
-              "Restore"
+              "Restore",
+              "UnitTest"
             ]
           }
+        },
+        "Solution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded. Default is ./NukeApp/NukeApp.sln"
         },
         "Target": {
           "type": "array",
@@ -86,7 +91,8 @@
             "enum": [
               "Clean",
               "Compile",
-              "Restore"
+              "Restore",
+              "UnitTest"
             ]
           }
         },
