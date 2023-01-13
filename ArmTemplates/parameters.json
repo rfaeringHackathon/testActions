@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_NukeApp_name": {
+            "value": null
+        },
+        "components_NukeApp_name": {
+            "value": null
+        },
+        "serverfarms_ASP_githubactions_bb22_name": {
+            "value": null
+        },
+        "actionGroups_Application_Insights_Smart_Detection_name": {
+            "value": null
+        },
+        "smartdetectoralertrules_failure_anomalies___nukeapp_name": {
+            "value": null
+        },
+        "workspaces_DefaultWorkspace_4883b89e_964b_4799_8d8f_bdf71e856a4d_WEU_externalid": {
+            "value": null
+        }
+    }
+}
