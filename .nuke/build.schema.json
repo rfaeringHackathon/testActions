@@ -65,6 +65,9 @@
             "type": "string"
           }
         },
+        "ResourceGroup": {
+          "type": "string"
+        },
         "Root": {
           "type": "string",
           "description": "Root directory during build execution"
@@ -94,6 +97,9 @@
           "type": "string",
           "description": "SpSecret",
           "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+        },
+        "SubscriptionId": {
+          "type": "string"
         },
         "Target": {
           "type": "array",

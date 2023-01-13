@@ -1,5 +1,8 @@
 {
   "$schema": "./build.schema.json",
   "AppId": "f74f221f-4794-401f-8a44-73e2cd457adb",
-  "TenantId": "51f2b856-c214-467f-b811-ebe0e9c4092f"  
+  "TenantId": "51f2b856-c214-467f-b811-ebe0e9c4092f",
+  "SubscriptionId": "4883b89e-964b-4799-8d8f-bdf71e856a4d",
+  "ResourceGroup": "github-actions",
+  "SpSecret": "v1:BxyhnPDE6erCzuM0/Go2vSwf6s/+pDJUBKXhaB6y7hqraJfjySgx9JafEL2+/mc2"
 }

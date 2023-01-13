@@ -32,11 +32,11 @@ using System.Net.Sockets;
     "continuous",
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.Push },    
-    InvokedTargets = new[] { nameof(Pack), nameof(Compile), nameof(DeployInfrastructure) },
+    InvokedTargets = new[] { nameof(DeployCode) },
     ImportSecrets = new[] { nameof(SpSecret) }) ]
 class Build : NukeBuild
 {
-    public static int Main() => Execute<Build>(x => x.Pack, x => x.UnitTest);
+    public static int Main() => Execute<Build>(x => x.DeployCode);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -50,6 +50,12 @@ class Build : NukeBuild
 
     [Parameter]    
     readonly string TenantId;
+
+    [Parameter]
+    readonly string SubscriptionId;
+    
+    [Parameter]
+    readonly string ResourceGroup;
 
     [Parameter]
     readonly string AppId;
@@ -89,8 +95,9 @@ class Build : NukeBuild
         {
             var project = Solution.Projects.First(x => x.Name == "NukeApp");
 
-            var output = GetOutputPath(project);
-            Log.Information($"Output: {output}");
+            var output = GetOutputPath(project);            
+            var path = output / "NukeApp.zip";
+            DeleteFile(path);
             CompressZip(output, output / "NukeApp.zip", compressionLevel: CompressionLevel.SmallestSize, fileMode: FileMode.CreateNew);
         });
 
@@ -100,7 +107,7 @@ class Build : NukeBuild
             if (IsServerBuild)
             {
                 var appId = AppId;
-                var secret = SpSecret; // "GqA8Q~J-g0kuyvVqmFCavF1Tgu6GPIj4FltwodAO";
+                var secret = SpSecret;
                 var tenantId = TenantId;
 
                 PowerShell( _ => _.SetProcessToolPath("pwsh").SetCommand($"az login --service-principal -u {appId} -p {secret} --tenant {tenantId}"));
@@ -114,8 +121,8 @@ class Build : NukeBuild
     .DependsOn(ServerAuthentication)
     .Executes(() =>
     {
-        var resourceGroupName = "github-actions";
-        var subscriptionId = "4883b89e-964b-4799-8d8f-bdf71e856a4d";
+        var resourceGroupName = ResourceGroup;
+        var subscriptionId = SubscriptionId;
 
         var armTemplatePath = RootDirectory / "ArmTemplates" / "template.json";
 
@@ -124,17 +131,15 @@ class Build : NukeBuild
     });
 
     Target DeployCode => _ => _
-    .DependsOn(Compile)
-    .Executes(async () =>
+    .DependsOn(Pack)
+    .Executes(() =>
     {
         var project = Solution.Projects.First(x => x.Name == "NukeApp");
 
-        var armClient = new ArmClient(new DefaultAzureCredential());
+        var output = GetOutputPath(project);
+        var path = output / "NukeApp.zip";
 
-        var subscription = armClient.GetSubscriptionResource(new ResourceIdentifier("/subscriptions/4883b89e-964b-4799-8d8f-bdf71e856a4d"));
-        var resourceGroup = await subscription.GetResourceGroups().GetAsync("github-actions");
-        
-
+        PowerShell(_ => _.SetProcessToolPath("pwsh").SetCommand($"az webapp deploy -g {ResourceGroup} -n NukeApp --src-path {path} --type zip"));
     });
 
     private AbsolutePath GetOutputPath(Project project)
